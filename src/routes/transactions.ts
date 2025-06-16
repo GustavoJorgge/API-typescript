@@ -2,7 +2,6 @@ import { FastifyInstance } from "fastify"
 import { knex } from "../database"
 import { z } from 'zod'
 import crypto, { randomUUID } from 'node:crypto'
-import cookie from '@fastify/cookie'
 import { checkSessionIdExists } from "../middleware/check-sessionid-exist"
 
 // Cookies <--> Formas da gente manter contexto entre requisições
@@ -10,7 +9,6 @@ import { checkSessionIdExists } from "../middleware/check-sessionid-exist"
 
 export async function transactionsRoutes(app: FastifyInstance) {
 
-    app.register(cookie)
 
     app.get('/', {
         preHandler: [checkSessionIdExists]
